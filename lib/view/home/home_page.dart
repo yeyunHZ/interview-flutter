@@ -39,13 +39,13 @@ class HomePageState extends State<HomePage> {
                   style: TextStyle(fontSize: 14),
                 ),
               ),
-              Container(child: Consumer<HomeProvide>(
+              Expanded(child: Container(child: Consumer<HomeProvide>(
                 builder: (build, provide, _) {
                   return homeProvide.categorys.length > 0
                       ? _buildListView()
                       : AppConfig.initLoading(false);
                 },
-              ),margin: EdgeInsets.fromLTRB(0, 0, 0, 30),),
+              ),margin: EdgeInsets.fromLTRB(0, 0, 0, 30),)),
               // Offstage(
               //   offstage: homeProvide.isLogin != false,
               //   child: Container(
