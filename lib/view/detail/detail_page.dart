@@ -25,6 +25,7 @@ class DetailState extends State<DetailPage>{
   final int categoryId;
   DetailState({this.articleId,this.categoryId});
   final _subscriptions = CompositeSubscription();
+  ScrollController controller = ScrollController();
 
   DetailProvide _detailProvide = DetailProvide();
   @override
@@ -57,6 +58,7 @@ class DetailState extends State<DetailPage>{
                 ,textAlign: TextAlign.center,),
               margin: EdgeInsets.fromLTRB(30, 10, 30, 20),),
         Expanded(child: ListView(
+          controller: controller,
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           children: [
@@ -157,7 +159,7 @@ class DetailState extends State<DetailPage>{
 
   void _loadData(){
     var subscription = _detailProvide.getArticleDetail(articleId, categoryId).listen((event) {
-
+      controller.animateTo(0, duration: null, curve: null);
     });
     _subscriptions.add(subscription);
   }
